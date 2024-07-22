@@ -1,13 +1,14 @@
 <?php
 /**
- * The template for displaying all pages.
+ * The template for displaying individual pages
  *
  */
 ?>
 
 
-<?php get_header(); ?>
 <?php
+get_header();
+
 while(have_posts()) {
     the_post();
 ?>
@@ -64,5 +65,7 @@ while(have_posts()) {
             <?php the_content(); ?>
         </div>
     </div>
-<?php } ?>
-<?php get_footer(); ?>
+<?php }
+
+get_footer();
+?>
