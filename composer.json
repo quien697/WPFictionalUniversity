@@ -1,0 +1,41 @@
+{
+    "name": "quien/wp-fictional-university",
+    "description": "WP Fictional University Sample Site",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Quien",
+            "email": "quien697@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "config": {
+        "vendor-dir": "vendor",
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "require": {
+        "php": ">=8.0",
+        "wpackagist-theme/astra": "^4.7",
+        "wpackagist-plugin/wordpress-seo": "^23.0",
+        "wpackagist-plugin/akismet": "^5.3"
+    },
+    "extra": {
+        "installer-paths": {
+            "wp-content/mu-plugins/{$name}/": [
+                "wpackagist-plugin/akismet"
+            ]
+        }
+    }
+}

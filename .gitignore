@@ -20,12 +20,6 @@
 # Configuration
 wp-config.php
 
-# Example themes
-/wp-content/themes/twenty*/
-
-# Example plugin
-/wp-content/plugins/hello.php
-
 # Uploads
 /wp-content/uploads/
 
@@ -35,17 +29,32 @@ wp-config.php
 # htaccess
 /.htaccess
 
+# All Must-Use plugins
+/wp-content/mu-plugins
+
+# Custom Must-Use Plugin
+#
+# Note: If you wish to whitelist must-use plugins,
+# uncomment the next line
+# !/wp-content/-mu-plugins/your must-use plugin
+
 # All plugins
+/wp-content/plugins
+
+# Custom Plugin
 #
 # Note: If you wish to whitelist plugins,
 # uncomment the next line
-#/wp-content/plugins
+# !/wp-content/plugins/your plugin
 
 # All themes
+/wp-content/themes
+
+# Custom Themes
 #
 # Note: If you wish to whitelist themes,
 # uncomment the next line
-#/wp-content/themes
+# !/wp-content/themes/your theme
 
 # IDEs
 /.idea
@@ -53,3 +62,6 @@ wp-config.php
 
 # Local WP
 local-xdebuginfo.php
+
+# Vendor
+/vendor
