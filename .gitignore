@@ -30,7 +30,7 @@ wp-config.php
 /.htaccess
 
 # All Must-Use plugins
-/wp-content/mu-plugins
+/wp-content/mu-plugins/*
 
 # Custom Must-Use Plugin
 #
@@ -39,7 +39,7 @@ wp-config.php
 # !/wp-content/-mu-plugins/your must-use plugin
 
 # All plugins
-/wp-content/plugins
+/wp-content/plugins/*
 
 # Custom Plugin
 #
@@ -48,13 +48,13 @@ wp-config.php
 # !/wp-content/plugins/your plugin
 
 # All themes
-/wp-content/themes
+/wp-content/themes/*
 
 # Custom Themes
 #
 # Note: If you wish to whitelist themes,
 # uncomment the next line
-# !/wp-content/themes/your theme
+!/wp-content/themes/wp-fictional-university
 
 # IDEs
 /.idea
