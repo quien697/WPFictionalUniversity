@@ -6,7 +6,6 @@
 ?>
 
 <?php
-
 /**
  *
  */
@@ -20,7 +19,6 @@ function wp_fictional_university_files() {
     // Script
     wp_enqueue_script('main-university-js', get_theme_file_uri('/build/index.js'), array('jquery'), '1.0', true);
 }
-
 add_action('wp_enqueue_scripts', 'wp_fictional_university_files');
 
 
@@ -31,5 +29,26 @@ function wp_fictional_university_features() {
 //    register_nav_menus( 'headerMenuLocation', 'Header Menu Location');
     add_theme_support('title-tag');
 }
-
 add_action('after_setup_theme', 'wp_fictional_university_features');
+
+/**
+ *
+ */
+function wp_fictional_university_adjust_queries($query) {
+    // Event
+    if (!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()) {
+        $today = date('Ymd');
+        $query->set('meta_key', 'event_date');
+        $query->set('orderby', 'meta_value_num');
+        $query->set('order', 'ASC');
+        $query->set('meta_query', array(
+            array(
+                'key' => 'event_date',
+                'compare' => '>=',
+                'value' => $today,
+                'type' => 'numeric'
+            )
+        ));
+    }
+}
+add_action('pre_get_posts', 'wp_fictional_university_adjust_queries');

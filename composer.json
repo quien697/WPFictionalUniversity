@@ -29,7 +29,8 @@
         "php": ">=8.0",
         "wpackagist-theme/astra": "^4.7",
         "wpackagist-plugin/wordpress-seo": "^23.0",
-        "wpackagist-plugin/akismet": "^5.3"
+        "wpackagist-plugin/akismet": "^5.3",
+        "wpackagist-plugin/advanced-custom-fields": "^6.3"
     },
     "extra": {
         "installer-paths": {
