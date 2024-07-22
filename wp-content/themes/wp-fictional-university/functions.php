@@ -7,6 +7,9 @@
 
 <?php
 
+/**
+ *
+ */
 function wp_fictional_university_files() {
     // Style
     wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
@@ -19,3 +22,14 @@ function wp_fictional_university_files() {
 }
 
 add_action('wp_enqueue_scripts', 'wp_fictional_university_files');
+
+
+/**
+ *
+ */
+function wp_fictional_university_features() {
+//    register_nav_menus( 'headerMenuLocation', 'Header Menu Location');
+    add_theme_support('title-tag');
+}
+
+add_action('after_setup_theme', 'wp_fictional_university_features');
