@@ -16,6 +16,7 @@
             </div>
         </div>
     </div>
+
     <div class="container container--narrow page-section">
         <?php
         while(have_posts()) {
@@ -40,6 +41,7 @@
             </div>
         <?php
         }
+
         echo paginate_links();
         ?>
         <hr class="section-break">

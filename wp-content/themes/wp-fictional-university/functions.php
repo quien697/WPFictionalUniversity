@@ -3,9 +3,7 @@
  * The file to create functions and definitions.
  *
  */
-?>
 
-<?php
 /**
  *
  */
@@ -49,6 +47,12 @@ function wp_fictional_university_adjust_queries($query) {
                 'type' => 'numeric'
             )
         ));
+    }
+    // Program
+    if (!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()) {
+        $query->set('orderby', 'title');
+        $query->set('order', 'ASC');
+        $query->set('posts_per_page', -1);
     }
 }
 add_action('pre_get_posts', 'wp_fictional_university_adjust_queries');

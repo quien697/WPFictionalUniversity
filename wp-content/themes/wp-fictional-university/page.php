@@ -5,7 +5,6 @@
  */
 ?>
 
-
 <?php
 get_header();
 
@@ -65,7 +64,8 @@ while(have_posts()) {
             <?php the_content(); ?>
         </div>
     </div>
-<?php }
+<?php
+}
 
 get_footer();
 ?>
