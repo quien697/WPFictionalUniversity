@@ -36,7 +36,7 @@ add_action('after_setup_theme', 'wp_fictional_university_features');
  */
 function wp_fictional_university_adjust_queries($query) {
     // Event
-    if (!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()) {
+    if (!is_admin() && is_post_type_archive('event') && $query->is_main_query()) {
         $today = date('Ymd');
         $query->set('meta_key', 'event_date');
         $query->set('orderby', 'meta_value_num');
@@ -51,10 +51,38 @@ function wp_fictional_university_adjust_queries($query) {
         ));
     }
     // Program
-    if (!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()) {
+    if (!is_admin() && is_post_type_archive('program') && $query->is_main_query()) {
         $query->set('orderby', 'title');
         $query->set('order', 'ASC');
         $query->set('posts_per_page', -1);
     }
 }
 add_action('pre_get_posts', 'wp_fictional_university_adjust_queries');
+
+/**
+ *
+ */
+function pageBanner($args = NULL): void {
+    if (!isset($args['title'])) {
+        $args['title'] = get_the_title();
+    }
+    if (!isset($args['subtitle'])) {
+        $args['subtitle'] = get_field('page_banner_subtitle');
+    }
+    if (!isset($args['image'])) {
+        if (get_field('page_banner_background_image') && !is_archive() && !is_home() ) {
+            $args['photo'] = get_field('page_banner_background_image')['sizes']['pageBanner'];
+        } else {
+            $args['photo'] = get_theme_file_uri('/images/ocean.jpg');
+        }
+    }
+    echo '<div class="page-banner">';
+    echo '<div class="page-banner__bg-image" style="background-image: url('.$args['photo'].');"></div>';
+    echo '<div class="page-banner__content container container--narrow">';
+    echo '<h1 class="page-banner__title">'.$args['title'].'</h1>';
+    echo '<div class="page-banner__intro">';
+    echo '<p>'.$args['subtitle'].'</p>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+}
