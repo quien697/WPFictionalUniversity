@@ -65,3 +65,9 @@ local-xdebuginfo.php
 
 # Vendor
 /vendor
+
+# Dependency directories
+node_modules/
+
+# Node build / generate output
+build/
