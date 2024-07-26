@@ -15,6 +15,7 @@ function wp_fictional_university_files() {
     wp_enqueue_style('wp_fictional_university_extra_styles', get_theme_file_uri('/build/index.css'));
 
     // Script
+    wp_enqueue_script('googleMap', '//maps.googleapis.com/maps/api/js?key=' . $_ENV['GOOGLE_MAP_KEY'], NULL, '1.0', true);
     wp_enqueue_script('main-university-js', get_theme_file_uri('/build/index.js'), array('jquery'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'wp_fictional_university_files');
@@ -56,6 +57,10 @@ function wp_fictional_university_adjust_queries($query) {
         $query->set('order', 'ASC');
         $query->set('posts_per_page', -1);
     }
+    // Campus
+    if (!is_admin() AND is_post_type_archive('campus') AND $query->is_main_query()) {
+        $query->set('posts_per_page', -1);
+    }
 }
 add_action('pre_get_posts', 'wp_fictional_university_adjust_queries');
 
@@ -86,3 +91,13 @@ function pageBanner($args = NULL): void {
     echo '</div>';
     echo '</div>';
 }
+
+/**
+ *
+ */
+function wp_fictional_university_map_key($api) {
+    $api['key'] = $_ENV['GOOGLE_MAP_KEY'];
+    return $api;
+}
+
+add_filter('acf/fields/google_map/api', 'wp_fictional_university_map_key');
