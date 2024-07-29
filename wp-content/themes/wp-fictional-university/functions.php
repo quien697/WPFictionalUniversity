@@ -120,3 +120,55 @@ function wp_fictional_university_custom_rest(): void
     ));
 }
 add_action('rest_api_init', 'wp_fictional_university_custom_rest');
+
+/**
+ * Redirect subscriber account out of admin and onto homepage
+ */
+function redirect_subs_to_frontend($routes): void {
+    $currentUser = wp_get_current_user();
+
+    if (count($currentUser->roles) == 1 && $currentUser->roles[0] == 'subscriber') {
+        wp_redirect(site_url('/'));
+        exit;
+    }
+}
+add_action('admin_init', 'redirect_subs_to_frontend');
+
+/**
+ * Hide admin bar in subscriber account
+ */
+function hide_subs_admin_bar(): void {
+    $currentUser = wp_get_current_user();
+
+    if (count($currentUser->roles) == 1 AND $currentUser->roles[0] == 'subscriber') {
+        show_admin_bar(false);
+    }
+}
+add_action('wp_loaded', 'hide_subs_admin_bar');
+
+/**
+ * Replace the url of title in login page
+ */
+function ourHeaderUrl(): string {
+    return esc_url(site_url('/'));
+}
+add_filter('login_headerurl', 'ourHeaderUrl');
+
+/**
+ * Update name of title in login page
+ */
+function login_title() {
+    return get_bloginfo('name');
+}
+add_filter('login_headertitle', 'login_title');
+
+/**
+ * Load style in login page
+ */
+function login_css() {
+    wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
+    wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+    wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css'));
+    wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'));
+}
+add_action('login_enqueue_scripts', 'login_css');

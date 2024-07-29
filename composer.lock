@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "483a19d879461a68ae2d8aedda7e5c5e",
+    "content-hash": "5e51ae8cfc6133c4a72f25ea2641f783",
     "packages": [
         {
             "name": "composer/installers",
@@ -647,6 +647,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/akismet/"
+        },
+        {
+            "name": "wpackagist-plugin/members",
+            "version": "3.2.9",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/members/",
+                "reference": "tags/3.2.9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/members.3.2.9.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/members/"
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",

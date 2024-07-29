@@ -17,6 +17,8 @@ function event_types(): void {
         'rewrite' => array('slug' => 'events'),
         'has_archive' => true,
         'public' => true,
+        'capability_type' => 'event',
+        'map_meta_cap' => true,
         'labels' => array(
             'name' => 'Events',
             'add_new_item' => 'Add New Event',
@@ -62,6 +64,8 @@ function event_types(): void {
         'rewrite' => array('slug' => 'campuses'),
         'has_archive' => true,
         'public' => true,
+        'capability_type' => 'campus',
+        'map_meta_cap' => true,
         'labels' => array(
             'name' => 'Campuses',
             'add_new_item' => 'Add New Campus',
