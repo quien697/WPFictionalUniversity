@@ -103,5 +103,20 @@ function wp_fictional_university_map_key($api) {
     $api['key'] = $_ENV['GOOGLE_MAP_KEY'];
     return $api;
 }
-
 add_filter('acf/fields/google_map/api', 'wp_fictional_university_map_key');
+
+/**
+ *
+ */
+require get_theme_file_path('/inc/search-route.php');
+
+/**
+ *
+ */
+function wp_fictional_university_custom_rest(): void
+{
+    register_rest_field('post', 'authorName', array(
+        'get_callback' => function() { return get_the_author(); }
+    ));
+}
+add_action('rest_api_init', 'wp_fictional_university_custom_rest');
