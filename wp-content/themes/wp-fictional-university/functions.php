@@ -107,9 +107,10 @@ function wp_fictional_university_map_key($api) {
 add_filter('acf/fields/google_map/api', 'wp_fictional_university_map_key');
 
 /**
- *
+ * import
  */
 require get_theme_file_path('/inc/search-route.php');
+require get_theme_file_path('/inc/like-route.php');
 
 /**
  *
