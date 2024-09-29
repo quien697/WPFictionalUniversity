@@ -60,9 +60,10 @@ class MyNotes {
 
     async deleteNote(e) {
         const thisNote = this.findNearestParentLi(e.target);
+        const url = wpFictionalUniversityData.root_url + "/wp-json/wp/v2/note/" + thisNote.getAttribute("data-id");
 
         try {
-            const response = await axios.delete(wpFictionalUniversityData.root_url + "/wp-json/wp/v2/note/" + thisNote.getAttribute("data-id"));
+            const response = await axios.delete(url);
             thisNote.style.height = `${thisNote.offsetHeight}px`;
             setTimeout(function () {
                 thisNote.classList.add("fade-out");
@@ -80,14 +81,15 @@ class MyNotes {
 
     async updateNote(e) {
         const thisNote = this.findNearestParentLi(e.target);
+        const url = wpFictionalUniversityData.root_url + "/wp-json/wp/v2/note/" + thisNote.getAttribute("data-id");
 
-        const ourUpdatedPost = {
+        const updatedPost = {
             "title": thisNote.querySelector(".note-title-field").value,
             "content": thisNote.querySelector(".note-body-field").value
         }
 
         try {
-            const response = await axios.post(wpFictionalUniversityData.root_url + "/wp-json/wp/v2/note/" + thisNote.getAttribute("data-id"), ourUpdatedPost);
+            const response = await axios.post(url, updatedPost);
             this.makeNoteReadOnly(thisNote)
         } catch (e) {
             console.log(`Sorry, msg = ${e}`);
@@ -95,14 +97,15 @@ class MyNotes {
     }
 
     async createNote() {
-        const ourNewPost = {
+        const url = wpFictionalUniversityData.root_url + "/wp-json/wp/v2/note/";
+        const newPost = {
             "title": document.querySelector(".new-note-title").value,
             "content": document.querySelector(".new-note-body").value,
             "status": "publish"
         }
 
         try {
-            const response = await axios.post(wpFictionalUniversityData.root_url + "/wp-json/wp/v2/note/", ourNewPost);
+            const response = await axios.post(url, newPost);
 
             if (response.data !== "You have reached your note limit.") {
                 document.querySelector(".new-note-title").value = "";
