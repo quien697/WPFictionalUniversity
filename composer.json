@@ -32,7 +32,8 @@
         "wpackagist-plugin/akismet": "^5.3",
         "wpackagist-plugin/advanced-custom-fields": "^6.3",
         "vlucas/phpdotenv": "^5.6",
-        "wpackagist-plugin/members": "^3.2"
+        "wpackagist-plugin/members": "^3.2",
+        "wpackagist-plugin/loco-translate": "^2.6"
     },
     "extra": {
         "installer-paths": {

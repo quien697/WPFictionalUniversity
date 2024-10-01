@@ -6,6 +6,8 @@
     Version: 1.0
     Author: Quien
     Author URI: https://tsunghsun.me/
+    Text Domain: wcpDomain
+    Domain Path: /languages
 */
 
 class WordCountPlugin {
@@ -13,6 +15,7 @@ class WordCountPlugin {
         add_action('admin_menu', array($this, 'adminPage'));
         add_action('admin_init', array($this, 'settings'));
         add_filter('the_content', array($this, 'frontendPage'));
+        add_action('init', array($this, 'languages'));
     }
 
     /*
@@ -197,15 +200,15 @@ class WordCountPlugin {
         }
 
         if (get_option('wcp_word_count', '1')) {
-            $html .= 'This post has '.$wordCount.' words <br />';
+            $html .= esc_html__('This post has', 'wcpDomain').' '.$wordCount.' '.esc_html__('words', 'wcpDomain').'.<br />';
         }
 
         if (get_option('wcp_character_count', '1')) {
-            $html .= 'This post has '.strlen(strip_tags($content)).' characters.<br />';
+            $html .= esc_html__('This post has', 'wcpDomain').' '.strlen(strip_tags($content)).' '.esc_html__('characters', 'wcpDomain').'.<br />';
         }
 
         if (get_option('wcp_read_time', '1')) {
-            $html .= 'This post will take about '.round($wordCount/225).' minute(s) to read.<br />';
+            $html .= esc_html__('This post will take about', 'wcpDomain').' '.round($wordCount/225).' '.esc_html__('minute(s) to read', 'wcpDomain').'.<br />';
         }
 
         $html .= '</p>';
@@ -215,6 +218,13 @@ class WordCountPlugin {
         }
 
         return $content.$html;
+    }
+
+    /*
+     * Load domain
+     */
+    function languages(): void {
+        load_plugin_textdomain('wcpDomain', false, dirname(plugin_basename(__FILE__)) . '/languages');
     }
 }
 
