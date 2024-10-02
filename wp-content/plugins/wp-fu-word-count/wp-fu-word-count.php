@@ -19,7 +19,7 @@ class WordCountPlugin {
     }
 
     /*
-     * Generate a menu item under `Settings` to navigate to `Word Count Settings` page
+     * Register a menu item `Word Count` under `Settings` to navigate to `Word Count Settings` page
      */
     function adminPage(): void {
         add_options_page(
@@ -32,7 +32,7 @@ class WordCountPlugin {
     }
 
     /*
-     * generate a content in `Word Count Settings` page
+     * Register a content in `Word Count Settings` page
      */
     function settings(): void {
         add_settings_section('wcp_section', null, null, 'word-count-settings-page');
@@ -125,8 +125,7 @@ class WordCountPlugin {
     /*
     * Generate location html
     */
-    function locationHTML(): void
-    { ?>
+    function locationHTML(): void { ?>
         <label>
             <select name="wcp_location">
                 <option value="0" <?php selected(get_option('wcp_location'), '0') ?>>Beginning of post</option>
@@ -138,8 +137,7 @@ class WordCountPlugin {
     /*
      * Generate headline html
      */
-    function headlineHTML(): void
-    { ?>
+    function headlineHTML(): void { ?>
         <label>
             <input type="text" name="wcp_headline" value="<?php echo esc_attr(get_option('wcp_headline')) ?>">
         </label>
@@ -148,8 +146,7 @@ class WordCountPlugin {
     /*
      * Generate checkbox html
      */
-    function checkboxHTML($args): void
-    { ?>
+    function checkboxHTML($args): void { ?>
         <label>
             <input type="checkbox" name="<?php echo $args['theName'] ?>" value="1" <?php checked(get_option($args['theName']), '1') ?>>
         </label>
@@ -158,8 +155,7 @@ class WordCountPlugin {
     /*
      * Generate word count settings html
      */
-    function wordCountSettingsHTML(): void
-    { ?>
+    function wordCountSettingsHTML(): void { ?>
         <div class="wrap">
             <h1>Word Count Settings</h1>
             <form action="options.php" method="POST">
